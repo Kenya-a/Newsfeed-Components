@@ -112,3 +112,61 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+const articles = document.querySelector('.articles')
+
+data.map(info => {
+  console.log('create component', info.title)
+  articles.appendChild(createarticle(info.title, info.date))
+})
+
+function createarticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  // defining new elements
+  const article = document.createElement('div')
+  const articleTitle = document.createElement('h2')
+  const articleDate = document.createElement('p')
+  const articleParagraph1 = document.createElement('p')
+  const articleParagraph2 = document.createElement('p')
+  const articleParagraph3 = document.createElement('p')
+  const articleSpan = document.createElement('span')
+  const openButton = document.createElement('button')
+  const closeButton = document.createElement('button')
+
+  //structure of elements
+  article.appendChild(articleTitle)
+  article.appendChild(articleDate)
+  article.appendChild(articleParagraph1)
+  article.appendChild(articleSpan)
+  articleSpan.appendChild(openButton)
+  articleSpan.appendChild(closeButton)
+
+  //setting class names
+  article.classList.add('articles')
+  articleDate.classList.add('date')
+  articleParagraph1.classList.add('article')
+  openButton.classList.add('expandButton')
+  closeButton.classList.add('close')
+  articleTitle.classList.add('h2')
+  
+  // closeButton.classList.add()
+
+  //set text content
+articleTitle.textContent = title
+articleDate.textContent = date
+articleParagraph1.textContent = firstParagraph
+articleParagraph2.textContent = secondParagraph
+articleParagraph3.textContent = thirdParagraph
+openButton.textContent = 'Expand'
+// closeButton.textContent = 'Close'
+
+  //button events
+  openButton.addEventListener('click', event => {
+    console.log('button clicked', event.target)
+    openButton.classList.toggle('expandButton')
+    // closeButton.classList.toggle('close')
+     articleParagraph1.classList.toggle('article')
+  })
+  // openButton.addEventListener('click', event => {
+
+  // })
+  return article
+}
