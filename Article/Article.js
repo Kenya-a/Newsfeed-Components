@@ -116,7 +116,7 @@ const articles = document.querySelector('.articles')
 
 data.map(info => {
   console.log('create component', info.title)
-  articles.appendChild(createarticle(info.title, info.date))
+  articles.appendChild(createarticle(info.title, info.date, info.firstParagraph, info.secondParagraph, info.thirdParagraph ))
 })
 
 function createarticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
@@ -124,49 +124,58 @@ function createarticle(title, date, firstParagraph, secondParagraph, thirdParagr
   const article = document.createElement('div')
   const articleTitle = document.createElement('h2')
   const articleDate = document.createElement('p')
-  const articleParagraph1 = document.createElement('p')
-  const articleParagraph2 = document.createElement('p')
-  const articleParagraph3 = document.createElement('p')
+  const articleParagrapha = document.createElement('p')
+  const articleParagraphb = document.createElement('p')
+  const articleParagraphc = document.createElement('p')
   const articleSpan = document.createElement('span')
   const openButton = document.createElement('button')
-  const closeButton = document.createElement('button')
+  // const closeButton = document.createElement('button')
 
   //structure of elements
   article.appendChild(articleTitle)
   article.appendChild(articleDate)
-  article.appendChild(articleParagraph1)
+  article.appendChild(articleParagrapha)
+  article.appendChild(articleParagraphb)
+  article.appendChild(articleParagraphc)
   article.appendChild(articleSpan)
   articleSpan.appendChild(openButton)
-  articleSpan.appendChild(closeButton)
+  // articleSpan.appendChild(closeButton)
 
   //setting class names
-  article.classList.add('articles')
+  article.classList.add('article')
   articleDate.classList.add('date')
-  articleParagraph1.classList.add('article')
+  articleParagrapha.classList.add('p')
+  articleParagraphb.classList.add('p')
+  articleParagraphc.classList.add('p')
   openButton.classList.add('expandButton')
-  closeButton.classList.add('close')
+  //closeButton.classList.add('expandButton')
   articleTitle.classList.add('h2')
   
   // closeButton.classList.add()
 
   //set text content
-articleTitle.textContent = title
-articleDate.textContent = date
-articleParagraph1.textContent = firstParagraph
-articleParagraph2.textContent = secondParagraph
-articleParagraph3.textContent = thirdParagraph
-openButton.textContent = 'Expand'
+  articleTitle.textContent = title
+  articleDate.textContent = date
+  articleParagrapha.textContent = firstParagraph
+  articleParagraphb.textContent = secondParagraph
+  articleParagraphc.textContent = thirdParagraph
+  openButton.textContent = 'Expand'
 // closeButton.textContent = 'Close'
 
   //button events
   openButton.addEventListener('click', event => {
     console.log('button clicked', event.target)
     openButton.classList.toggle('expandButton')
-    // closeButton.classList.toggle('close')
-     articleParagraph1.classList.toggle('article')
-  })
-  // openButton.addEventListener('click', event => {
+    //closeButton.classList.toggle('close')
+     article.classList.toggle('article-open')
+     openButton.textContent = 'Close'
 
-  // })
+  })
+  
+
   return article
 }
+
+  //New Articles
+
+  articles.appendChild(createarticle())
